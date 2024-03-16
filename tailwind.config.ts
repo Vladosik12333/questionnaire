@@ -8,17 +8,6 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
-			fontSize: {
-				xl: "24px",
-			},
-			screens: {
-				mobile: "360px",
-				desktop: "1024px",
-			},
-			colors: {
-				primary: "#FFF0F0",
-				secondary1: "#EAEEF7",
-			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
