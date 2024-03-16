@@ -1,11 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
-import { questionsReducer } from './reducer';
+import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
+import { answersReducer } from "./answers/reducer";
 
 export const store = configureStore({
-    reducer: { questions: questionsReducer },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({ serializableCheck: false }),
+	reducer: { answers: answersReducer },
+	middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

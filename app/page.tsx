@@ -1,23 +1,10 @@
-"use client";
-
-import { currentQuestionSelector } from "@/redux/selectors";
-import { useAppSelector } from "@/redux/store";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import configQuestionnaire from "@/config-questionnaire";
+import { redirect } from "next/navigation";
 
 const HomePage = () => {
-	const router = useRouter();
-	const currentQuestion = useAppSelector(currentQuestionSelector);
+	const firstQuestionId = configQuestionnaire[0].id;
 
-	useEffect(() => {
-		router.push(`/questions/${currentQuestion.id}`);
-	}, [currentQuestion, router]);
-
-	return (
-		<section>
-			<h1>We are getting back to your question...</h1>
-		</section>
-	);
+	redirect(`/questions/${firstQuestionId}`);
 };
 
 export default HomePage;

@@ -1,0 +1,15 @@
+@import '@/styles/variables';
+
+.button {
+	min-width: 330px;
+	min-height: 64px;
+	border-radius: 16px;
+	box-shadow: 2px 2px 6px 0px #543C97;
+	background-color: $secondary1;
+	font-size: 14px;
+
+	&:hover {
+		background: $gradient;
+		color: $secondary2;
+	}
+}

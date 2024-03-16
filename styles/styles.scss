@@ -4,8 +4,5 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	height: 100vh;
-	width: 100vw;
-	box-sizing: border-box;
-}
+@import './variables';
+@import './global';

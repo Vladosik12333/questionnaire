@@ -1,28 +1,25 @@
-"use client";
+import Header from "@/components/Header/Header";
+import QuestionSection from "@/components/QuestionSection/QuestionSection";
+import configQuestionnaire, { IQuestion } from "@/config-questionnaire";
+import styles from "./styles.module.scss";
 
-import Button from "@/components/Button/Button";
-import Header from "@/components/Header";
-import { currentQuestionSelector } from "@/redux/selectors";
-import { useAppSelector } from "@/redux/store";
+export const dynamicParams = false;
 
-const QuestionPage = () => {
-	const currentQuestion = useAppSelector(currentQuestionSelector);
+export function generateStaticParams() {
+	return configQuestionnaire.map(question => question.id);
+}
 
-	const handleClickButton = () => {};
+interface IQuestionPage {
+	params: { id: string };
+}
+
+const QuestionPage: React.FC<IQuestionPage> = ({ params }) => {
+	const currentQuestion = configQuestionnaire.find(question => question.id === params.id);
 
 	return (
-		<main className="h-screen w-screen">
-			<Header />
-			<section className="bg-primary h-screen flex flex-col items-center">
-				<h1 className="text-xl font-bold">{currentQuestion.title}</h1>
-				<ul className="space-y-5 mt-8">
-					{currentQuestion.variants.map(({ id, title }) => (
-						<li key={id}>
-							<Button handleClick={handleClickButton}>{title}</Button>
-						</li>
-					))}
-				</ul>
-			</section>
+		<main className={styles.main}>
+			<Header prevQuestionId={currentQuestion?.previousQuestionId} />
+			<QuestionSection currentQuestion={currentQuestion ?? null} />
 		</main>
 	);
 };

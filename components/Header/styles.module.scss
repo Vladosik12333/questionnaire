@@ -1,0 +1,25 @@
+@import '@/styles/variables';
+
+.header {
+	padding: 15px 0;
+}
+
+.box {
+	width: 50%;
+	display: flex;
+	justify-content: space-between;
+	margin-left: 10px;
+	padding-left: 15px;
+
+	&OnlyLogo {
+		justify-content: flex-end;
+	}
+
+	@media (min-width: $desktop) {
+		padding-left: 165px;
+	}
+}
+
+.iconWhite {
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
