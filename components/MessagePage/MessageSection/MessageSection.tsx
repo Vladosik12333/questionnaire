@@ -4,7 +4,7 @@ import { IQuestion } from "@/config-questionnaire";
 import checkNextQuestion from "@/helpers/checkNextQuestion";
 
 interface IMessageSection {
-	currentQuestion: IQuestion | undefined;
+	currentQuestion: IQuestion;
 	answerId: string;
 }
 

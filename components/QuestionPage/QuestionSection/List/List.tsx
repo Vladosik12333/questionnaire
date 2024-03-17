@@ -1,12 +1,14 @@
 "use client";
 
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import styles from "./styles.module.scss";
-import configQuestionnaire, { IQuestion, QuestionType } from "@/config-questionnaire";
+import configQuestionnaire, { IQuestion } from "@/config-questionnaire";
 import { addAnswer } from "@/redux/answers/actions";
 import { useRouter } from "next/navigation";
-import Button from "../Item/Item";
+import Button from "./Item/Item";
 import checkNextQuestion from "@/helpers/checkNextQuestion";
+import { answersSelector } from "@/redux/answers/selectors";
+import messageUserResults from "@/helpers/messageUserResults";
 
 interface IList {
 	currentQuestion: IQuestion;
@@ -15,9 +17,14 @@ interface IList {
 const List: React.FC<IList> = ({ currentQuestion }) => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
+	const answers = useAppSelector(answersSelector);
 
 	const handleClickButton = (answerId: string) => {
-		if (!currentQuestion) return;
+		if (answers.length === 0 && currentQuestion.id !== configQuestionnaire[0].id) {
+			router.push(`/questions/${configQuestionnaire[0].id}`);
+			return;
+		}
+
 		dispatch(addAnswer({ questionId: currentQuestion.id, answerId }));
 
 		const nextQuestion = checkNextQuestion(currentQuestion, answerId);
@@ -28,7 +35,9 @@ const List: React.FC<IList> = ({ currentQuestion }) => {
 		}
 
 		if (nextQuestion) {
-			router.push(`/questions/${currentQuestion.nextQuestionId}`);
+			router.push(`/questions/${nextQuestion.id}`);
+		} else {
+			messageUserResults(answers, currentQuestion, answerId);
 		}
 	};
 

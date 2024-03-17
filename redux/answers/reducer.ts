@@ -29,14 +29,10 @@ const answersSlice = createSlice({
 			return newState;
 		});
 
-		builder.addCase(removeAnswer.type, (state, action: PayloadAction<string>) => {
+		builder.addCase(removeAnswer.type, (state, action) => {
 			const newState = [...state];
 
-			const index = newState.findIndex(answer => answer.questionId === action.payload);
-
-			if (index !== -1) {
-				newState.splice(index, 1);
-			}
+			newState.pop();
 
 			return newState;
 		});

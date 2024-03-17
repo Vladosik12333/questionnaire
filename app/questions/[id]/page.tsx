@@ -1,7 +1,5 @@
-import Header from "@/components/Header/Header";
-import QuestionSection from "@/components/QuestionSection/QuestionSection";
-import configQuestionnaire, { IQuestion } from "@/config-questionnaire";
-import styles from "./styles.module.scss";
+import QuestionPage from "@/components/QuestionPage/QuestionPage";
+import configQuestionnaire from "@/config-questionnaire";
 
 export const dynamicParams = false;
 
@@ -13,15 +11,8 @@ interface IQuestionPage {
 	params: { id: string };
 }
 
-const QuestionPage: React.FC<IQuestionPage> = ({ params }) => {
-	const currentQuestion = configQuestionnaire.find(question => question.id === params.id);
-
-	return (
-		<main className={styles.main}>
-			<Header prevQuestionId={currentQuestion?.previousQuestionId} />
-			<QuestionSection currentQuestion={currentQuestion ?? null} />
-		</main>
-	);
+const Page: React.FC<IQuestionPage> = ({ params }) => {
+	return <QuestionPage questionId={params.id} />;
 };
 
-export default QuestionPage;
+export default Page;

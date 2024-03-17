@@ -1,7 +1,7 @@
 @import '@/styles/variables.scss';
 
 .main {
-	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	background: $gradient;
+	padding: 0 15px 20px 15px;
 }
