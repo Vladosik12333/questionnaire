@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { addAnswer, removeAnswer } from "./actions";
+import { addAnswer, clearAnswers, removeAnswer } from "./actions";
 
 export interface IAnswer {
 	questionId: string;
@@ -29,13 +29,15 @@ const answersSlice = createSlice({
 			return newState;
 		});
 
-		builder.addCase(removeAnswer.type, (state, action) => {
+		builder.addCase(removeAnswer.type, (state, _) => {
 			const newState = [...state];
 
 			newState.pop();
 
 			return newState;
 		});
+
+		builder.addCase(clearAnswers.type, (_, __) => initialState);
 	},
 });
 

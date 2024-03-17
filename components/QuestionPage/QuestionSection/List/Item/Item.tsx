@@ -7,9 +7,11 @@ interface IItem {
 }
 
 const Item: React.FC<IItem> = ({ handleClick, id, children }) => {
+	const handleClickButton = () => handleClick(id);
+
 	return (
 		<li>
-			<button className={styles.button} onClick={() => handleClick(id)}>
+			<button className={styles.button} onClick={handleClickButton}>
 				{children}
 			</button>
 		</li>

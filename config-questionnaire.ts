@@ -368,7 +368,6 @@ const configQuestionnaire: IQuestion[] = [
 	},
 ];
 
-// Check every component and refactor it
 // Write good instruction
 // Host it on Vercel
 // Write good README.md
