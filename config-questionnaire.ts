@@ -57,6 +57,11 @@ export interface IQuestion {
 	And in case for 2nd goal, you should add next string: "question's ID | answer's ID | your custom text"
 	Then, it will show your custom text in case user selected the answer's ID in the question's ID you added
 	You can find examples in the configQuestionnaire below
+	
+	Note:
+	Every question is connected to each other by nextQuestionId
+	Once the question does not have neither nextQuestionId iteself nor in variants,
+	it will be considered as the last question
 	*/
 const configQuestionnaire: IQuestion[] = [
 	{
