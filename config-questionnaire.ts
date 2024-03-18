@@ -27,12 +27,37 @@ export interface IQuestion {
 
 /*
 	You may edit this variable to add, remove or edit questions.
-	@id - unique identifier of the question
-	@title - title of the question
-	@type - type of the question (singleChoice or multipleChoice)
-	@variants - array of possible answers
-	@rightAnswers - array of indexes of right answers
-*/
+
+	@id (required) - unique identifier of the question.
+	I do recommend using UUIDs to avoid collisions
+
+	@title (required) - title of the question
+
+	@type (required) - type of the question
+	By default, questions is basic and will redirect to the next question as nextQuestionId
+	However, in case of influence question, you should write the nextQuestionId for each variant
+	Thus, user will be redirected to the next question based on the answer
+
+	@variants (required) - array of possible answers, their ids
+	And nextQuestionId if the question is influence
+
+	@nextQuestionId (optional) - id of the next question if question is basic
+
+	@statement (optional) - statement for the question if you ask whether user agrees with..
+
+	@message (optional) - message for the user after the question. 
+
+	@template (optional) - you may use template in your question's title
+	Template currently supports two cases:
+	1. You may use the title of the answer that user selected in the previous question
+	2. You may insert custom text in case user selected a specific answer in the previous question
+	For this, you should add {0}, {1}, {2}... to the title string of the question
+	Then, to the template array, you should add the id of the previous question in case for first goal.
+	It will show the title of the answer that user selected in the question's ID you added
+	And in case for 2nd goal, you should add next string: "question's ID | answer's ID | your custom text"
+	Then, it will show your custom text in case user selected the answer's ID in the question's ID you added
+	You can find examples in the configQuestionnaire below
+	*/
 const configQuestionnaire: IQuestion[] = [
 	{
 		id: "bbd29db9-04d1-4a0b-8bcd-9c4c4020fb3d",
@@ -368,7 +393,6 @@ const configQuestionnaire: IQuestion[] = [
 	},
 ];
 
-// Write good instruction
 // Host it on Vercel
 // Write good README.md
 
