@@ -1,8 +1,6 @@
 import QuestionPage from "@/components/QuestionPage/QuestionPage";
 import configQuestionnaire from "@/config-questionnaire";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
 	return configQuestionnaire.map(question => question.id);
 }

@@ -51,6 +51,7 @@ const QuestionSection: React.FC<IQuestionSection> = ({ currentQuestion }) => {
 		} else {
 			messageUserResults(answers, currentQuestion, answerId);
 			dispatch(clearAnswers());
+			router.push(`/questions/${configQuestionnaire[0].id}`);
 		}
 	};
 
